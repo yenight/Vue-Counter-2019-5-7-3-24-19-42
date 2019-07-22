@@ -1,10 +1,10 @@
 <template>
   <div class="hello">
-    please select number: <input type="number" v-model.number="result">
+    please select number: <input type="number" v-model.number="counterResult">
     <br/>
     <br/>
-    <CountGroup :counterNum="result" ref="countGroup" @getCountSum="getCountSum"></CountGroup>
-    <CounterSum :countSum="countSum"></CounterSum>
+    <CountGroup :counterNum="counterResult"></CountGroup>
+    <CounterSum></CounterSum>
   </div>
 </template>
 
@@ -19,21 +19,17 @@ export default {
   },
   data: function () {
     return {
-      result: 0,
-      countSum: 0
+      counterResult: 0,
     }
   },
   watch: {
-    result: function (value) {
+    counterResult: function (value) {
       if (value === 0) {
-        this.countSum = 0
+        this.$store.commit('resetSum')
       }
     }
   },
   methods: {
-    getCountSum: function (value) {
-      this.countSum = this.result === 0 ? 0 : value
-    }
   }
 
 }

@@ -1,0 +1,5 @@
+const state = {
+    sum: 0
+}
+
+export default state

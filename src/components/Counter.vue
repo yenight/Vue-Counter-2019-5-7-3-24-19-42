@@ -1,7 +1,7 @@
 <template>
     <div>
         <button @click="add()">+</button>
-        <span >{{message}}</span>
+        <span >{{result}}</span>
         <button @click="sub()">-</button>
     </div>
 </template>
@@ -11,20 +11,20 @@
         name: "Counter",
         data: function() {
             return {
-                message: 0,
+                result: 0
             };
         },
-        beforeDestroy: function () {
-            this.$emit('getCounterNumber', this.message * -1);
+        destroy: function () {
+            this.$store.commit('calculateSum', {number: (this.result * -1)});
         },
         methods: {
             sub: function () {
-               this.message--;
-               this.$emit('getCounterNumber', -1)
+                this.result--;
+                this.$store.commit('calculateSum', {number: -1})
             },
             add: function () {
-                this.message++;
-                this.$emit('getCounterNumber', +1)
+                this.result++;
+                this.$store.commit('calculateSum', {number: 1})
             }
         }
 

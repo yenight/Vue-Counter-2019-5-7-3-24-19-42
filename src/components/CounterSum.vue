@@ -1,15 +1,12 @@
 <template>
     <div>
-        Sum: {{countSum}}
+        Sum: {{$store.state.sum}}
     </div>
 </template>
 
 <script>
     export default {
         name: "CounterSum",
-        props: {
-            countSum: Number
-        }
     }
 </script>
 
